@@ -1,0 +1,1732 @@
+% Basic Matlab Functions for Img processing PRACTICAL_1
+--------------------------------------------------------
+% imread function , imshow function
+i= imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+imshow(i)
+
+
+
+
+
+
+
+% imf info function
+info = imfinfo('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+
+
+
+
+
+% size function
+img = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+size(img)
+
+
+
+
+
+% whos f function
+img = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+whos img;
+
+
+
+
+
+
+
+
+% rgb2gray function
+a = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+b = rgb2gray(a);
+imshow(b)
+
+
+
+
+
+
+% LinePlotting command
+x=[1,3,4];
+y=[3,2,7];
+plot(x,y)
+
+% imbinarize command(it will ask for add on download)
+a = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+b = rgb2gray(a);
+BW = imbinarize(b);
+imshow(BW)
+
+
+
+
+
+
+--------------------------------------------------
+% Command used for Processing an Image PRACTICAL_2
+--------------------------------------------------
+% sliceviewer
+i= imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+cmap = parula(8);
+sliceViewer(i,'colormap',cmap);
+
+
+
+
+
+
+
+
+% imcrop command
+ii= imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+[j,rectangle] = imcrop(ii);
+figure;
+imshow(j);
+title('cropped img');
+
+
+
+
+
+
+
+
+
+% imrotate command
+i = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+l = imrotate(i,-180,"bicubic","crop");
+figure;
+imshow(l);
+title('rotated img');
+
+
+
+
+
+
+
+% imrescaled command
+i = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+i_rescaled = rescale(i);
+figure;
+imshow(i_rescaled);
+title('rescaled img [0,1]');
+
+
+
+
+
+
+
+
+
+% 2D viewer & 3d viewer command
+i = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+figure;
+imshow(i)
+viewer = viewer2d;
+i = imageshow('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png', Parent=viewer);
+viewer = viewer3d;
+i = imageshow('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png', Parent=viewer);
+
+
+
+
+
+
+
+
+
+% immovie & implay command
+load mri
+mov = immovie(D,map)
+implay(mov)
+
+
+
+
+
+
+
+% zoom command
+i = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+figure;
+imshow(i);
+title('zoom example for img')
+zoom on
+
+
+
+
+
+
+
+
+
+
+% colormap command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+grayImg = rgb2gray(img);
+figure;
+imshow(grayImg);
+title('turtle Image with Colormap');
+colormap(parula);
+colorbar;
+
+
+
+
+
+
+
+
+
+
+% colorbar command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+grayImg = rgb2gray(img);
+figure;
+imshow(grayImg);
+title('turtle Image with Colorbar cmd');
+colormap(parula);
+colorbar;
+cb = colorbar;
+cb.Label.String = 'Pixel Intensity';
+
+
+
+
+
+
+
+
+
+
+% mesh commmand
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+grayImg = rgb2gray(img);
+[X, Y] = meshgrid(1:size(grayImg,2), 1:size(grayImg,1));
+mesh(X, Y, double(grayImg));
+colormap(jet);
+colorbar;
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------
+% Image enhancement using cmd PRACTICAL_3
+---------------------------------------------
+% Contrast command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+gray = rgb2gray(img);
+contrast_img = imadjust(gray);
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(contrast_img), title('Contrast Enhanced');
+
+
+
+
+
+
+
+
+
+
+% Sharpen command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+gray = rgb2gray(img);
+sharp_img = imsharpen(gray);
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(sharp_img), title('Sharpened');
+
+
+
+
+
+
+
+
+
+
+% imfuse command
+img1 = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+img2 = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+fused_img = imfuse(img1, img2, 'blend');
+imshow(fused_img);
+
+
+
+
+
+
+
+
+
+
+% Montage command
+img1 = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+img2 = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+montage({img1, img2});
+
+
+
+
+
+
+
+
+
+
+
+% Squeeze command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+img = reshape(img, size(img,1), size(img,2), 1, size(img,3));
+squeezed_img = squeeze(img);
+imshow(squeezed_img);
+
+
+
+
+
+
+
+
+
+
+% histogram command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+gray = rgb2gray(img);
+imhist(gray);
+
+
+
+
+
+
+
+
+
+
+% histeq command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+gray = rgb2gray(img);
+eq_img = histeq(gray);
+imshow(eq_img);
+
+
+
+
+
+
+
+
+
+
+% rgb2hsv command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+hsv_img = rgb2hsv(img);
+imshow(hsv_img);
+
+
+
+
+
+
+
+
+
+
+% imresize command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+resized_img = imresize(img, [286 266]);
+imshow(resized_img);
+
+
+
+
+
+
+
+
+
+
+% imnoise command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+noisy_img = imnoise(img, 'gaussian');
+imshow(noisy_img);
+
+
+
+
+
+
+
+
+
+
+% hsv2rgb command
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+hsv_img = rgb2hsv(img);
+gray_img = rgb2gray(hsv2rgb(hsv_img));
+imshow(gray_img);
+
+
+
+
+
+
+
+
+
+
+% imshowpair command
+img1 = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+img2 = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+imshowpair(img1, img2, 'montage');
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------
+% Convolution & Correlation PRACTICAL_4
+---------------------------------------------
+% img to both convo and corr
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+gray = rgb2gray(img);
+kernel = [1 0 -1; 1 0 -1; 1 0 -1];
+conv_img = conv2(double(gray), kernel, 'same');
+corr_img = imfilter(double(gray), kernel, 'corr');
+figure;
+subplot(1,3,1), imshow(gray), title('Original');
+subplot(1,3,2), imshow(uint8(conv_img)), title('Convolution');
+subplot(1,3,3), imshow(uint8(corr_img)), title('Correlation');
+
+
+
+
+
+
+
+
+
+
+% Basic convolution :
+x = [1 2;3 4];
+h = [5 6;7 8];
+v = conv2(x, h, 'same'); 
+disp(v);
+
+
+
+
+
+
+
+
+
+
+% Circular convolution 
+x = [1, 2, 3, 4];
+h = [1, 10, 1, 10];
+X = fft(x);
+H = fft(h);
+y = ifft(X .* H);
+disp('Circular Convolution Result:');
+disp(real(y));
+
+
+
+
+
+
+
+
+
+
+% Auto correlation(after run for output enter [1,2,3])
+x = input('Enter the sequence x[n]: ');
+rxx = xcorr(x, x);
+disp('Auto-correlation sequence:')
+disp(rxx)
+% Plot
+n = -(length(x)-1):(length(x)-1);
+stem(n, rxx)
+xlabel('Lag')
+ylabel('Amplitude')
+title('Auto-Correlation of x')
+grid on
+
+
+
+
+
+
+
+
+
+
+% Cross correlation(after run for output enter [1,2,3] & [4,5,6])
+x = input('Enter first sequence x[n]: ');
+y = input('Enter second sequence y[n]: ');
+rxy = xcorr(x, y);
+disp('Cross-correlation sequence:')
+disp(rxy)
+% Plot
+n = -(length(x)-1):(length(y)-1);
+stem(n, rxy)
+xlabel('Lag')
+ylabel('Amplitude')
+title('Cross-Correlation of x and y')
+grid on
+ 
+
+
+
+
+
+
+
+
+
+---------------------------------------------
+% DFT,FFT2 etc PRACTICAL_5
+---------------------------------------------
+% DFT (extra)
+i=[1 2 3 4 ; 1 2 3 4 ; 1 2 3 4 ; 1 2 3 4];
+k=dftmtx(4);
+o = k*i*k';
+disp('Input image:');
+disp(i);
+disp('Kernel:');
+disp(k);
+disp('Output after dft:');
+disp(o);
+
+
+
+
+
+
+
+
+
+
+% DFT on Img
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+gray = rgb2gray(img);
+dft1 = fft(gray);
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(log(1+abs(dft1)),[]), title('DFT');
+
+
+
+
+
+
+
+
+
+
+% 2D DFT on Img
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+gray = rgb2gray(img);
+dft2 = fft2(gray);
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(log(1+abs(dft2)),[]), title('2D DFT');
+
+
+
+
+
+
+
+
+
+
+% Rotation Property
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');        
+g = rgb2gray(img);                  % Convert to grayscale
+r = imrotate(g, 45);                % Rotate image by 45
+                                   % degrees
+F1 = fft2(g);                       % DFT of original image
+F2 = fft2(r);                       % DFT of rotated image
+subplot(2,2,1); imshow(g); title('Original Image');
+subplot(2,2,2); imshow(r); title('Rotated Image');
+subplot(2,2,3); imshow(log(1+abs(F1)), []); title('DFT of Original');
+subplot(2,2,4); imshow(log(1+abs(F2)), []); title('DFT of Rotated');
+
+
+
+
+
+
+
+
+
+
+% Merging blend of 2 images,
+img1 = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          % Read image
+img2 = imread('C:\Users\mahes\OneDrive\Desktop\Screenshot 2026-03-18 162230.png');
+blend_img = imfuse(img1, img2, 'blend');
+figure;
+subplot(1,2,1), imshow(img1), title('Image 1');
+subplot(1,2,2), imshow(blend_img), title('Blended Image');
+
+
+
+
+
+
+
+
+
+
+% FFT(extra)
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');         
+gray = rgb2gray(img);
+fft_img = fftshift(fft2(gray));
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(log(1+abs(fft_img)),[]), title('FFT');
+
+
+
+
+
+
+
+
+
+
+% FFT2 with colormap
+f = zeros(30,30);
+f(5:24,13:17)=1;
+F = fft2(f);
+absF = abs(F);
+lo = log(abs(F));
+imshow(lo,[-2,5],InitialMagnification='fit');
+colormap(jet)
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+% Transforms PRACTICAL_6
+--------------------------------------------
+% Haar Transform
+
+clear all;
+close all;
+clc;
+n=input('Enter the basis matrix dimension: ');
+m=n;
+for u=0:n-1
+for v=0:n-1
+for x=0:n-1
+for y=0:n-1
+powervalue=0;
+sn=log2(n);
+for i=0:sn-1
+a=dec2bin(x, sn);
+b=bin2dec(a(sn-i));
+c=dec2bin(y, sn);
+d=bin2dec(c(sn-i));
+e=dec2bin(u, sn);
+f=bin2dec(e(sn-i));
+e=dec2bin(v, sn);
+a=bin2dec(e(sn-i));
+powervalue=powervalue+(b*f+d*a);
+end
+basis{u+1, v+1}(x+1, y+1)=(-1)^powervalue;
+end
+end
+end
+end
+mag=basis;
+figure(4)
+k=1;
+%Code to plot Haar basis
+for i=1:m
+for j=1:n
+subplot(m, n, k)
+imshow(mag{i, j})
+k=k+1;
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+% Hadamard Transform
+
+clc;
+clear;
+close all;
+
+disp('--- Hadamard Matrix Generation ---');
+
+% Input from user
+n = input('Enter order (must be power of 2): ');
+
+% Check if n is power of 2
+if mod(log2(n),1) ~= 0
+    disp('Error: Order must be a power of 2 (1,2,4,8,16...)');
+else
+    % Generate Hadamard Matrix
+    H = 1;
+    while size(H,1) < n
+        H = [H  H;
+             H -H];
+    end
+    disp('Hadamard Matrix:');
+    disp(H);
+    % Optional: Display as image
+    figure;
+    imagesc(H);
+    colormap(gray);
+    colorbar;
+    title('Hadamard Matrix Visualization');
+end
+
+
+
+
+
+
+
+
+
+
+
+% Walsh Transform
+
+clear all;
+close all;
+clc;
+n=input('Enter the basis matrix dimension:');
+m=n;
+for u=0:n-1
+for v=0:n-1
+for x=0:n-1
+for y=0:n-1
+powervalue=1;
+sn=log2(n);
+for i=0:sn-1
+a=dec2bin(x, sn);
+b=bin2dec(a(sn-i));
+c=dec2bin(y, sn);
+d=bin2dec(c(sn-i));
+e=dec2bin(u, sn);
+f=bin2dec(e(i+1));
+e=dec2bin(v, sn);
+a=bin2dec(e(i+1));
+powervalue=powervalue*(-1)^(b*f+d*a);
+end
+basis{u+1, v+1}(x+1, y+1)=powervalue;
+end
+end
+end
+end
+mag=basis;
+figure(1)
+k=1;
+for i=1:m
+for j=1:n
+subplot(m, n, k)
+imshow(mag{i, j})
+k=k+1;
+end
+end
+
+
+
+
+
+
+
+
+
+
+
+% Z-Transform
+
+close all;
+clear all;
+clc;
+[x,y]=meshgrid(-pi:1.09:pi);
+z=62*sin(x)-22*cos(y);
+surf(x,y,z),
+axis([-4,-4 4,-4 3])
+
+
+
+
+
+
+
+
+
+
+
+% Radon Transform
+
+% Create a sample image
+I = zeros(100,100);
+I(25:75, 25:75) = 1;
+% Calculate the Radon transform
+theta = 0:180;
+[R, xp] = radon(I, theta);
+% Display the transform
+imshow(R, [], 'Xdata', theta, 'Ydata', xp, 'InitialMagnification', 'fit')
+xlabel('\theta (degrees)')
+ylabel('x''')
+colormap(gca, hot), colorbar
+
+
+
+
+
+
+
+
+
+
+
+% DCT Transform
+
+m=input('Enter the basis matrix dimension:');
+n=m;
+alpha2=ones(1, n)*sqrt(2/n);
+alpha2(1)=sqrt(1/n);
+alpha1=ones(1, m)*sqrt(2/m);
+alpha(1)=sqrt(1/m);
+for u=0:m-1
+for v=0:n-1
+for x=0:m-1
+for y=0:n-1
+a{u+1, v+1}(x+1, y+1)=alpha1(u+1)*alpha2(v+1)*...
+cos((2*x+1)*u*pi/(2*n))*cos((2*y+1)*v*pi/(2*n));
+end
+end
+end
+end
+mag=a;
+figure(3)
+k=1;
+% Code to plot the basis
+for i=1:m
+for j=1:n
+subplot(m, n, k)
+imshow(mag{i, j})
+k=k+1;
+end
+end
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+% Study the brightness & Contrast of an img PRACTICAL_7
+--------------------------------------------------
+
+% imnegative
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+neg_img = imcomplement(img);
+figure;
+subplot(1,2,1), imshow(img), title('Original');
+subplot(1,2,2), imshow(neg_img), title('Negative');
+
+
+
+
+
+
+
+
+
+
+
+% threshold 
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');         
+gray = rgb2gray(img);
+bw = gray > 128;
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(bw), title('Threshold');
+
+
+
+
+
+
+
+
+
+
+
+% Brightness and contrast
+i = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+a = double(i) + 150;
+subplot(2,2,1)
+imshow(uint8(a));title('increase brightness');
+b = double(i) - 150;
+subplot(2,2,2)
+imshow(uint8(b));title('decrease brightness');
+c = double(i) * 0.5;
+subplot(2,2,3)
+imshow(uint8(c));title('decrease contrast');
+d = double(i) * 2;
+subplot(2,2,4)
+imshow(uint8(d));title('increase contrast');
+
+
+
+
+
+
+
+
+
+
+
+% Gray-level slicing
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+gray = rgb2gray(img);
+low = 100;
+high = 150;
+slice = gray;
+slice(gray < low | gray > high) = 0;
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(slice), title('Gray Level Slicing');
+
+
+
+
+
+
+
+
+
+
+
+
+% Gray-level slicing with background
+x = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+x = imresize(x, [256, 256]);
+y = double(x);
+[m, n] = size(y);
+L = 255;
+a = round(L / 3.24);
+b = round(3 * L / 4);
+z = y;
+for i = 1:m
+for j = 1:n
+if (y(i, j) >= a && y(i, j) <= b)
+z(i, j) = L;
+end
+end
+end
+imshow(uint8(y)), title('Original Image');
+figure, imshow(uint8(z)), title('Gray Level Slicing withBackground');
+
+
+
+
+
+
+
+
+
+
+
+
+% Gray-level slicing without  background
+I = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+I = rgb2gray(I); % Convert to grayscale
+x = imresize(I, [256 256]); % Resize image
+y = double(x); % Convert to double
+[m, n] = size(y);
+L = 255;
+a = round(L/4); % Lower gray level
+b = round(3*L/4); % Upper gray level
+z = y; % Background retained
+for i = 1:m
+for j = 1:n
+if (y(i,j) >= a && y(i,j) <= b)
+z(i,j) = L; % Highlight range
+end
+end
+end
+imshow(uint8(y)), title('Original Image');
+figure, imshow(uint8(z)), title('Gray Level Slicing without Background');
+
+
+
+
+
+
+
+
+
+
+
+% Bit-plane slicing
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+gray = rgb2gray(img);
+figure;
+subplot(3,3,1), imshow(gray), title('Original');
+for i = 1:8
+  bit_img = bitget(gray, i) * 255;
+  subplot(3,3,i+1), imshow(uint8(bit_img)), title(['Bit Plane ', num2str(i)]);
+end
+
+
+
+
+
+
+
+
+
+
+
+% Bit-Plane Slicing from 0 to 7 bit
+a = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+a=rgb2gray(a)
+[m,n]=size(a)
+b7=zeros(m,n)
+b6=zeros(m,n)
+b5=zeros(m,n)
+b4=zeros(m,n)
+b3=zeros(m,n)
+b2=zeros(m,n)
+b1=zeros(m,n)
+b0=zeros(m,n)
+for i=1:m
+   for j=1:n
+   b7(i,j)=bitand(a(i,j),128);
+   b6(i,j)=bitand(a(i,j),64);
+   b5(i,j)=bitand(a(i,j),128);
+   b6(i,j)=bitand(a(i,j),128);
+   b5(i,j)=bitand(a(i,j),128);
+   b4(i,j)=bitand(a(i,j),128);
+   b3(i,j)=bitand(a(i,j),128);
+   b2(i,j)=bitand(a(i,j),128);
+   b1(i,j)=bitand(a(i,j),128);
+   b0(i,j)=bitand(a(i,j),128);
+   end
+end
+b7=uint8(b7)*255;
+b6=uint8(b6)*255;
+b5=uint8(b5)*255;
+b4=uint8(b4)*255;
+b3=uint8(b3)*255;
+b2=uint8(b2)*255;
+b1=uint8(b1)*255;
+b0=uint8(b0)*255;
+figure;
+subplot(3,3,1),imshow(a),title('original image')
+subplot(3,3,2),imshow(b7),title('7th bit plane ')
+subplot(3,3,3),imshow(b6),title('6th bit plane')
+subplot(3,3,4),imshow(b5),title('5th bit plane')
+subplot(3,3,5),imshow(b4),title('4th bit plane')
+subplot(3,3,6),imshow(b3),title('3th bit plane')
+subplot(3,3,7),imshow(b2),title('2th bit plane')
+subplot(3,3,8),imshow(b1),title('1th bit plane')
+subplot(3,3,9),imshow(b0),title('0th bit plane')
+
+
+
+
+
+
+
+
+
+
+
+% Bitplane remover
+a = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+if size(a,3)==3;
+   a = rgb2gray(a);
+end
+[m,n]=size(a);
+n1=input('enter the bitplane(8,7,6,5,4,3,2,1 to be removed:');
+if n1<1||n1>8
+   error('Invalid bit plane selection. Please enter a value between 1 and 8.');
+end
+s=255-(2^(n1-1));
+Out_I=zeros(m,n);
+for i =1:m
+   for j =1:n
+       Out_I(i,j)=bitand(a(i,j),s);
+   end
+end
+figure,imshow(uint8(Out_I)),title(['Iamge after removing bitplane',num2str(n1)]);
+
+
+
+
+
+
+
+
+
+
+
+% Log Transform
+i = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+L=155
+c=L/log10(1+L)
+d=c*log10(1+double(i))
+imshow(uint8 (d));title("log transformed")
+
+
+
+
+
+
+
+
+
+
+
+% Power law (gamma) command
+a = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+a=rgb2gray(a)
+gamma=1.7:1.7
+d=double(a).^gamma
+figure
+subplot(2,2,1)
+imshow(uint8(a));title("Original image")
+subplot(2,1,2)
+imshow(uint8(d)); title("Power law transformed");
+
+
+
+
+
+
+
+
+
+
+
+% Brightness Command
+% Brightness Adjustment
+a = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+b = double(a) + 150;
+c = double(a) - 100;
+figure;
+subplot(1,3,1), imshow(a), title('Original');
+subplot(1,3,2), imshow(uint8(b)), title('Increase Brightness');
+subplot(1,3,3), imshow(uint8(c)), title('Decrease Brightness');
+
+
+
+
+
+
+
+
+
+
+
+% contrast command
+a = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+d = double(a) * 2;
+e = double(a) * 0.5;
+figure;
+subplot(1,3,1), imshow(a), title('Original');
+subplot(1,3,2), imshow(uint8(d)), title('Increase Contrast');
+subplot(1,3,3), imshow(uint8(e)), title('Decrease Contrast');
+
+
+
+
+--------------------------------------------
+% Filters PRACTICAL_8
+--------------------------------------------
+% Low pass filter
+
+load count.dat
+x = count(:,1);
+a = 1;
+b = [1/4 1/4 1/4 1/4];
+y = filter(b, a, x);
+t = 1:length(x);
+plot(t,x,'--',t,y,'-')
+legend('Original Data','Filtered Data');
+
+
+
+
+
+
+
+
+
+
+% Low pass filter for img
+
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+gray = rgb2gray(img);
+h = fspecial('average', [5 5]);
+lp_img = imfilter(gray, h);
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(lp_img), title('Low Pass Filter');
+
+
+
+
+
+
+
+
+
+
+%  High pass filter
+
+load count.dat
+x = count(:,1);
+a = [1 0.2];
+b = [2 3];
+y = filter(b, a, x);
+t = 1:length(x);
+plot(t,x,'--',t,y,'-')
+legend('Original Data','Filtered Data');
+
+
+
+
+
+
+
+
+
+
+%  High pass filter for img
+
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+gray = rgb2gray(img);
+h = fspecial('laplacian', 0.2);
+hp_img = imfilter(gray, h);
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(hp_img, []), title('High Pass Filter');
+
+
+
+
+
+
+
+
+
+
+% Gaussian 
+A=zeros(10)
+A(3:8, 3:8)= ones(6)
+disp(A)
+subplot(1,3,1)
+mesh(A)
+H=[1 2 1; 0 0 0; -1,-2,-1]
+Y=filter2(H,A,'valid')
+disp(Y)
+subplot(1,3,2)
+mesh(Y)
+C=conv2(A,rot90(H,2))
+disp(C)
+subplot(1,3,3)
+mesh(C)
+
+
+
+
+
+
+
+
+
+
+% Gaussian for img
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+gray = rgb2gray(img);
+sigma = 2;
+I_blur = imgaussfilt(gray, sigma);
+figure;
+subplot(1,2,1), imshow(gray), title('Original');
+subplot(1,2,2), imshow(I_blur), title('Gaussian Filter');
+
+
+
+
+
+
+
+
+
+
+
+% Median Filters
+
+k = imread('C:\Users\mahes\OneDrive\Desktop\image.png');         
+k = rgb2gray(k);
+salt_noise = imnoise(k, 'salt & pepper', 0.05);
+denoised = medfilt2(salt_noise, [5 5]);
+imshowpair(salt_noise, denoised, 'montage');
+
+
+
+
+
+
+
+
+
+
+
+% noise
+
+img = imread('C:\Users\mahes\OneDrive\Desktop\image.png');         
+noise_img = imnoise(img, 'salt & pepper', 0.02);
+figure;
+subplot(1,2,1), imshow(img), title('Original');
+subplot(1,2,2), imshow(noise_img), title('Noisy Image');
+
+
+
+
+
+
+
+
+
+
+% gaussian noise
+
+i= imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+imshow(i)
+j=imnoise(i,'gaussian',0.20)
+imshow(j)
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+% Binary Img processing & colour img processing PRACTICAL_9
+----------------------------------------------------------
+% Erosion and Dilation
+a = rgb2gray(imread('C:\Users\mahes\OneDrive\Desktop\image.png'));
+b = [1 1 1;1 1 1;1 1 1];
+a1 = imdilate(a, b);
+a2 = imerode(a, b);
+subplot(1,3,1), imshow(a), title('Original image')
+subplot(1,3,2), imshow(a2), title('Eroded image')
+subplot(1,3,3), imshow(a1), title('Dilated image')
+
+
+
+
+
+
+
+
+
+
+
+% Open and close
+a = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          % Read image
+b = [1 1 1;1 1 1;1 1 1];
+a1 = imopen(a, b);
+a2 = imclose(a, b);
+subplot(1,3,1), imshow(a), title('Original image')
+subplot(1,3,2), imshow(a1), title('Opened image')
+subplot(1,3,3), imshow(a2), title('Closed image')
+
+
+
+
+
+
+
+
+
+
+
+% Histeq for color images
+I = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          % Read image
+imshow(I), figure;
+I = im2double(I);
+hsv=rgb2hsv(I);
+h = hsv(:,:,1); % Hue
+s = hsv(:,:,2); % Saturation
+v = hsv (:,:,3); % Value
+pixels = numel(h);
+darks = find(v < 0.2);
+lights = find(s < 0.05 & v > 0.85);
+h(darks) = -1;
+h(lights) = -1;
+black = numel(darks)/pixels;
+white = numel(lights)/pixels;
+red = numel(find((h>0.9167 | h <= 0.083) & h == -1)) / pixels;
+yellow = numel(find(h> 0.083 & h <= 0.25)) /pixels;
+green = numel(find(h > 0.25 & h <= 0.4167))/pixels;
+cyan = numel(find(h > 0.4167 & h <= 0.5833)) / pixels;
+blue = numel (find(h> 0.5833 & h <= 0.75)) / pixels;
+magenta = numel(find(h > 0.75 & h <= 0.9167)) / pixels;
+hold on;
+fill([0 0 1 1], [0 red red 0], 'r'); % Red
+fill ([1 1 2 2], [0 yellow yellow 0], 'y'); % Yellow
+fill([2 2 3 3], [0 green green 0], 'g'); % Green
+fill([3 3 4 4], [0 cyan cyan 0], 'c'); % Cyan
+fill([4 4 5 5], [0 blue blue 0], 'b'); % Blue
+fill([5 5 6 6], [0 magenta magenta 0], 'm'); % Magenta
+fill([6 6 7 7], [0 white white 0], 'W'); % White
+fill([7 7 8 8], [0 black black 0], 'k'); % Black
+axis([0 8 0 1]);
+
+
+
+
+
+
+
+
+
+
+
+% YCbCr
+% 1. Read an RGB image into the workspace
+RGB = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          % Read image
+% Display the original RGB image
+figure;
+imshow(RGB);
+title('Original Image in RGB Color Space');
+% 2. Convert the RGB image to the YCbCr color space
+YCBCR = rgb2ycbcr(RGB);
+% Display the converted YCbCr image (which MATLAB displays as an RGB representation)
+figure;
+imshow(YCBCR);
+title('Image in YCbCr Color Space');
+% 3. Extract the individual Y, Cb, and Cr channels
+Y = YCBCR(:,:,1); % Luminance channel
+Cb = YCBCR(:,:,2); % Blue-difference chrominance channel
+Cr = YCBCR(:,:,3); % Red-difference chrominance channel
+% Alternatively, use imsplit (MATLAB R2019a or later)
+% [Y, Cb, Cr] = imsplit(YCBCR);
+% 4. Display the individual channels
+figure;
+subplot(1, 3, 1); imshow(Y); title('Y (Luminance) Channel');
+subplot(1, 3, 2); imshow(Cb); title('Cb (Chrominance Blue) Channel');
+subplot(1, 3, 3); imshow(Cr); title('Cr (Chrominance Red) Channel');
+
+
+
+
+
+
+
+
+
+
+
+% Smoothening
+% Note: medfilt2 is typically for grayscale; for color images you may process channels separately
+A = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          % Read image
+R = medfilt2(A(:,:,1), [3 3]); % Filter red channel
+G = medfilt2(A(:,:,2), [3 3]); % Filter green channel
+B_channel = medfilt2(A(:,:,3), [3 3]); % Filter blue channel
+B_smoothed = cat(3, R, G, B_channel); % Recombine channels
+imshowpair(A, B_smoothed, 'montage')
+
+
+
+
+
+
+
+
+
+
+
+% Sharpening
+% Read color image
+A = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          % Read image
+% Sharpen image using default parameters
+B = imsharpen(A);
+imshowpair(A, B, 'montage'); % Display original and sharpened image
+
+
+
+
+
+
+
+
+
+
+
+
+% Pseudo color
+clc;
+clear all;
+input_img=imread('C:\Users\mahes\OneDrive\Desktop\image.png');
+[m n]=size(input_img);
+input_img=double(input_img);
+for i=1:m
+   for j=1:n
+       if input_img(i, j)>=0 & input_img(i, j)<50
+           output_img(i, j, 1)=input_img(i, j)+50;
+           output_img(i, j, 2)=input_img(i, j)+100;
+           output_img(i, j, 3)=input_img(i, j)+10;
+       end
+       if input_img(i, j)>=50 & input_img(i, j)<100
+           output_img(i, j, 1)=input_img(i, j)+35;
+           output_img(i, j, 2)=input_img(i, j)+128;
+           output_img(i, j, 3)=input_img(i, j)+10;
+       end
+       if input_img(i, j)>=100 & input_img(i, j)<150
+           output_img(i, j, 1)=input_img(i, j)+152;
+           output_img(i, j, 2)=input_img(i, j)+130;
+           output_img(i, j, 3)=input_img(i, j)+15;
+       end
+       if input_img(i, j)>=150 & input_img(i, j)<200
+           output_img(i, j, 1)=input_img(i, j)+50;
+           output_img(i, j, 2)=input_img(i, j)+140;
+           output_img(i, j, 3)=input_img(i, j)+25;
+       end
+       if input_img(i, j)>=200 & input_img(i, j)<=256
+           output_img(i, j, 1)=input_img(i, j)+128;
+           output_img(i, j, 2)=input_img(i, j)+180;
+           output_img(i, j, 3)=input_img(i, j)+45;
+       end
+   end
+end
+subplot(2, 2, 1), imshow(uint8(input_img)), title('Input Image')
+subplot(2, 2, 2), imshow(uint8(output_img)), title('Pseudo Coloured Image')
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+% Image Segmentation and Compression PRACTICAL_10
+--------------------------------------------------
+
+%% Edge Detection
+
+i = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          
+imshow(i);
+title('Original Image');
+if size(i,3) == 3
+   i_gray = rgb2gray(i);
+else
+   i_gray = i; % If the image is already grayscale, assign it directly
+end
+BW_canny = edge(i_gray,'Canny');
+BW_sobel = edge(i_gray,'Sobel');
+BW_roberts = edge(i_gray,'roberts');
+BW_prewitt = edge(i_gray,'prewitt');
+BW_log = edge(i_gray,'log');
+figure;
+tiledlayout(2,3);
+nexttile;
+imshow(i_gray);
+title('Grayscale image');
+nexttile;
+imshow(BW_canny);
+title('Canny Edge Detector');
+nexttile;
+imshow(BW_sobel);
+title('Sobel Edge Detector');
+nexttile;
+imshow(BW_prewitt);
+title('Prewitt Edge Detector');
+nexttile;
+imshow(BW_roberts);
+title('Roberts Edge Detector');
+nexttile;
+imshow(BW_log);
+title('Log Edge Detector');
+
+
+
+
+
+
+
+
+
+
+
+%% Hough Transform
+
+RGB = imread('C:\Users\mahes\OneDrive\Desktop\image.png');          % Read image
+% Convert the image to grayscale
+I = rgb2gray(RGB);
+
+% Perform Canny edge detection
+BW = edge(I, "canny");
+
+% Perform Hough Transform with the corrected Theta range
+[H, T, R] = hough(BW, "RhoResolution", 0.5, "Theta", -90:0.5:89);
+
+% Plot the original image and Hough Transform
+subplot(2, 1, 1);
+imshow(RGB);
+title('Original Image');
+subplot(2, 1, 2);
+imshow(imadjust(rescale(H)), 'XData', T, 'YData', R, 'InitialMagnification', 'fit');
+xlabel('\theta'), ylabel('\rho');
+title('Hough Transform');
+axis on, axis normal, hold on;
+colormap("hot");
+
+
+
+
+
+
+
+
+
+
+% Run Length encoding
+clc
+clear
+close all
+choice = input('Enter 1 for Encoding, 2 for Decoding: ');
+if choice == 1
+   a = input('Enter the array: ');
+  
+   if isempty(a)
+       disp('Empty array');
+       return;
+   end
+  
+   b = [];
+   c = 1;
+  
+   for i = 1:length(a)-1
+       if a(i) == a(i+1)
+           c = c + 1;
+       else
+           b = [b c a(i)];
+           c = 1;
+       end
+   end
+  
+   b = [b c a(end)];
+  
+   disp('Encoded array:')
+   disp(b)
+elseif choice == 2
+   a = input('Enter the encoded array (in []): ');
+  
+   if isempty(a) || mod(length(a),2) ~= 0
+       disp('Invalid encoded array');
+       return;
+   end
+  
+   counts = a(1:2:end);
+   values = a(2:2:end);
+  
+   counts = counts(:)'; 
+   values = values(:)'; 
+  
+   u = [];
+   for i = 1:length(counts)
+       u = [u repmat(values(i), 1, counts(i))];
+   end
+  
+   disp('Decoded array:')
+   disp(u)
+else
+   disp('Invalid choice');
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%Huffman Encoding
+
+symbols = [1,2,3];
+prob = [0.1,0.1,0.8];
+[dict,avglen] = huffmandict(symbols,prob);
+disp('Huffman Code Dictionary');
+disp(dict);
+disp(['Average Code Length: ', num2str(avglen)]);
+signal_in = repmat([3,3,1,3,3,3,3,3,2,3],1,5);
+encoded_signal = huffmanenco(signal_in,dict);
+disp('Length of original signal:');
+disp(length(signal_in));
+disp('Length of encoded signal(bits):');
+disp(length(encoded_signal));
+decoded_signal = huffmandeco(encoded_signal,dict);
+is_equal = isequal(signal_in, decoded_signal);
+
